@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-.left > * {
+.left>* {
     margin-right: var(--space);
 }
 
@@ -19,6 +19,6 @@
     align-items: center;
 }
 
-.right > * {
+.right>* {
     margin-left: var(--space);
 }
