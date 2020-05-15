@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.router = void 0;
 var express = require("express");
-var reservation_1 = require("./reservation");
+var reservation_1 = require("../dist/reservation");
 var restaurant_1 = require("./restaurant");
 var router = express.Router();
 exports.router = router;
@@ -51,7 +51,8 @@ router.get("/restaurant", function (req, res) { return __awaiter(void 0, void 0,
                 return [4 /*yield*/, restaurant_1.restaurant.findAll()];
             case 1:
                 data = _a.sent();
-                return [2 /*return*/, data];
+                res.status(200).json(data);
+                return [3 /*break*/, 3];
             case 2:
                 e_1 = _a.sent();
                 res.status(500).json({ message: "Something wrong" });
@@ -60,37 +61,13 @@ router.get("/restaurant", function (req, res) { return __awaiter(void 0, void 0,
         }
     });
 }); });
-router.get("/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, e_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, restaurant_1.restaurant.find(req.params.id)];
-            case 1:
-                data = _a.sent();
-                if (data.length == 0) {
-                    res.status(200).json({ message: "Not found with this id" });
-                }
-                else {
-                    delete data[0]._id;
-                    res.status(200).json(data[0]);
-                }
-                return [3 /*break*/, 3];
-            case 2:
-                e_2 = _a.sent();
-                res.status(500).json({ message: "Something wrong" });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); });
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var request, e_3;
+    var request, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 request = req.body;
+                console.log(request);
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
@@ -100,7 +77,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 res.status(200).json({ message: "creation successful" });
                 return [3 /*break*/, 4];
             case 3:
-                e_3 = _a.sent();
+                e_2 = _a.sent();
                 res.status(500).json({ message: "Something wrong" });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -111,7 +88,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
 // reservation request: name conteaction, date, time
 */
 router.post("/:id/reservation", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var request, id, e_4;
+    var request, id, e_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -129,10 +106,115 @@ router.post("/:id/reservation", function (req, res) { return __awaiter(void 0, v
                 res.status(200).json({ message: "creat successful" });
                 return [3 /*break*/, 4];
             case 3:
-                e_4 = _a.sent();
+                e_3 = _a.sent();
                 res.status(500).json({ message: "something wrong" });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
+        }
+    });
+}); });
+router.post("/:id/rate", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request, e_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                request = req.body;
+                return [4 /*yield*/, restaurant_1.restaurant.updateRate(req.params.id, request["rate"])];
+            case 1:
+                _a.sent();
+                res.status(200).json({ message: "creat successful" });
+                return [3 /*break*/, 3];
+            case 2:
+                e_4 = _a.sent();
+                res.status(500).json({ message: "something wrong" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+router.get("/name", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request, data, e_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                request = req.body;
+                return [4 /*yield*/, restaurant_1.restaurant.findName(request["name"])];
+            case 1:
+                data = _a.sent();
+                res.status(200).json(data);
+                return [3 /*break*/, 3];
+            case 2:
+                e_5 = _a.sent();
+                res.status(500).json({ message: "something wrong" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+router.get("/money", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request, data, e_6;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                request = req.body;
+                return [4 /*yield*/, restaurant_1.restaurant.findMoney(request["money"])];
+            case 1:
+                data = _a.sent();
+                res.status(200).json(data);
+                return [3 /*break*/, 3];
+            case 2:
+                e_6 = _a.sent();
+                res.status(500).json({ message: "something wrong" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+router.get("/people", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request, data, e_7;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                request = req.body;
+                return [4 /*yield*/, restaurant_1.restaurant.findPeople(request["people"])];
+            case 1:
+                data = _a.sent();
+                res.status(200).json(data);
+                return [3 /*break*/, 3];
+            case 2:
+                e_7 = _a.sent();
+                res.status(500).json({ message: "something wrong" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+router.get("/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data, e_8;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, restaurant_1.restaurant.find(req.params.id)];
+            case 1:
+                data = _a.sent();
+                if (data.length == 0) {
+                    res.status(200).json({ message: "Not found with this id" });
+                }
+                else {
+                    delete data[0]._id;
+                    res.status(200).json(data[0]);
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                e_8 = _a.sent();
+                res.status(500).json({ message: "Something wrong" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); });

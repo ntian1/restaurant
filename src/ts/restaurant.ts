@@ -31,7 +31,7 @@ export class restaurant {
     public static async findAll() {
         try {
             var db = await client.connect(this.url);
-            var collection = db.db("Tian-Nianqi-CS554-Lab1").collection("task");
+            var collection = db.db("CS554-G2-Final").collection("restaurant");
             var res: any = await collection.find({}).toArray();
             db.close();
             return res;
@@ -42,8 +42,6 @@ export class restaurant {
         }
     }
 
-
-
     public static async findName(name: string) {
         var db = await client.connect(this.url);
         var collection = db.db("CS554-G2-Final").collection("restaurant");
@@ -53,8 +51,6 @@ export class restaurant {
     }
 
 
-
-
     public static async findLocation(location: string) {
         var db = await client.connect(this.url);
         var collection = db.db("CS554-G2-Final").collection("restaurant");
@@ -62,15 +58,21 @@ export class restaurant {
         db.close();
         return res;
     }
+
     public static async updateRate(id:string,newRate: number) {
         var db = await client.connect(this.url);
         var collection = db.db("CS554-G2-Final").collection("restaurant");
         var res = await collection.find({"id": id});
+        console.log(res);
+
         var rate_number = res["rate_number"]+1;
         var rate = (res["rate"]*res["rate_number"]+newRate)/rate_number;
+        console.log(rate_number, rate);
+        
         await collection.update({"id": id},{$set: {"rate": rate,"rate_number":rate_number}});
         db.close();
     }
+
     public static async findMoney(money_cost: number) {
         var db = await client.connect(this.url);
         var collection = db.db("CS554-G2-Final").collection("restaurant");
@@ -78,7 +80,7 @@ export class restaurant {
         db.close();
         return res;
     }
-    public static async findCusine(cusine: number) {
+    public static async findCusine(cusine: string) {
         var db = await client.connect(this.url);
         var collection = db.db("CS554-G2-Final").collection("restaurant");
         var res: any = await collection.find({"cusine": cusine}).toArray();
@@ -98,4 +100,6 @@ export class restaurant {
         await collection.update({"id": id},{$set: {"time": time}});
         db.close();
     }
+
+
 }

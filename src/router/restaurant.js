@@ -91,7 +91,7 @@ var restaurant = /** @class */ (function () {
                         return [4 /*yield*/, client.connect(this.url)];
                     case 1:
                         db = _a.sent();
-                        collection = db.db("Tian-Nianqi-CS554-Lab1").collection("task");
+                        collection = db.db("CS554-G2-Final").collection("restaurant");
                         return [4 /*yield*/, collection.find({}).toArray()];
                     case 2:
                         res = _a.sent();
@@ -154,8 +154,10 @@ var restaurant = /** @class */ (function () {
                         return [4 /*yield*/, collection.find({ "id": id })];
                     case 2:
                         res = _a.sent();
+                        console.log(res);
                         rate_number = res["rate_number"] + 1;
                         rate = (res["rate"] * res["rate_number"] + newRate) / rate_number;
+                        console.log(rate_number, rate);
                         return [4 /*yield*/, collection.update({ "id": id }, { $set: { "rate": rate, "rate_number": rate_number } })];
                     case 3:
                         _a.sent();

@@ -58,6 +58,7 @@ const RestaurantBody = () => {
         <div className="field">
         <label className="label">City</label>
             <div className="control">
+              
                 <input class="input" type="text" placeholder="Text input"/>
             </div>
         </div>

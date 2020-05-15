@@ -1,6 +1,6 @@
 import * as express from "express"
 import { v4 as uuid } from 'uuid'
-import {reservation} from "./reservation"
+import {reservation} from "../dist/reservation"
 import {restaurant} from "./restaurant"
 
 const router: any = express.Router()
@@ -8,31 +8,21 @@ const router: any = express.Router()
 router.get("/restaurant", async (req: express.Request, res: express.Response) => {
     try {
         const data = await restaurant.findAll();
-        return data;
+        res.status(200).json(data);
     }
     catch (e) {
         res.status(500).json({message: "Something wrong"});
     }
 })
 
-router.get("/:id", async (req: express.Request, res: express.Response) => {
-    try {
-        const data = await restaurant.find(req.params.id);
-        if(data.length == 0) {
-            res.status(200).json({message: "Not found with this id"});
-        }
-        else {
-            delete data[0]._id;
-            res.status(200).json(data[0]);
-        }
-    }
-    catch (e) {
-        res.status(500).json({message: "Something wrong"});
-    }
-});
+
+
+
 
 router.post("/", async (req: express.Request, res: express.Response) => {
     const request = req.body;
+    console.log(request);
+    
     try {
         await restaurant.create(request["name"], request["connection"], request["location"], 0,0,request["money_cost"],
         request["time_avaliable"],request["cusine"],request["people"]);
@@ -61,6 +51,66 @@ router.post("/:id/reservation", async (req: express.Request, res: express.Respon
     }
     catch (e) {
         res.status(500).json({message: "something wrong"});
+    }
+});
+router.post("/:id/rate", async (req: express.Request, res: express.Response) => {
+    try {
+        const request = req.body;
+        await restaurant.updateRate(req.params.id,request["rate"])
+
+        res.status(200).json({message: "creat successful"});
+    }
+    catch (e) {
+        res.status(500).json({message: "something wrong"});
+    }
+});
+
+router.get("/name", async (req: express.Request, res: express.Response) => {
+    try {
+        const request = req.body;
+        var data = await restaurant.findName(request["name"])
+        res.status(200).json(data);
+    }
+    catch (e) {
+        res.status(500).json({message: "something wrong"});
+    }
+});
+
+router.get("/money", async (req: express.Request, res: express.Response) => {
+    try {
+        const request = req.body;
+        var data = await restaurant.findMoney(request["money"])
+        res.status(200).json(data);
+    }
+    catch (e) {
+        res.status(500).json({message: "something wrong"});
+    }
+});
+
+router.get("/people", async (req: express.Request, res: express.Response) => {
+    try {
+        const request = req.body;
+        var data = await restaurant.findPeople(request["people"])
+        res.status(200).json(data);
+    }
+    catch (e) {
+        res.status(500).json({message: "something wrong"});
+    }
+});
+
+router.get("/:id", async (req: express.Request, res: express.Response) => {
+    try {
+        const data = await restaurant.find(req.params.id);
+        if(data.length == 0) {
+            res.status(200).json({message: "Not found with this id"});
+        }
+        else {
+            delete data[0]._id;
+            res.status(200).json(data[0]);
+        }
+    }
+    catch (e) {
+        res.status(500).json({message: "Something wrong"});
     }
 });
 
