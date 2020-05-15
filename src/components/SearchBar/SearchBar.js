@@ -24,6 +24,11 @@ const SearchBar = (props) => {
         <p className="control">
           <button className={`button is-static ${sizeClass}`}>People</button>
         </p>
+      {/* 
+        input - number/int 
+        The user will specifify the number of people here
+        
+       */}
 
         <div className="control">
           <div className={`select ${sizeClass}`}>
@@ -33,20 +38,26 @@ const SearchBar = (props) => {
                 setPeople(e.target.value);
               }}
             >
-              <option>2 People</option>
-              <option>3 People</option>
-              <option>4 People</option>
-              <option>5 People</option>
-              <option>6 People</option>
-              <option>7 People</option>
-              <option>8 People</option>
-              <option>9 People</option>
+              <option>2 </option>
+              <option>3</option>
+              <option>4 </option>
+              <option>5 </option>
+              <option>6 </option>
+              <option>7 </option>
+              <option>8 </option>
+              <option>9 </option>
             </select>
           </div>
         </div>
         <div className="control">
           <div className={`button is-static ${sizeClass}`}>Date</div>
         </div>
+        {/* Date Picker
+        
+        The user enters the date when he need to book the table
+
+        
+        */}
         <div className="control">
           <div className={`button ${sizeClass} `}>
             <DatePicker
@@ -61,6 +72,12 @@ const SearchBar = (props) => {
         <div className="control">
           <div className={`button is-static ${sizeClass}`}>Near</div>
         </div>
+        {/* 
+        input - string 
+        The user enters the location of the restaurant he prefer
+        
+
+        */}
         <p className="control">
           <input
             className={`input ${sizeClass} ${styles["input-control"]}`}
@@ -72,6 +89,12 @@ const SearchBar = (props) => {
             placeholder="Where"
           />
         </p>
+        {/* 
+        
+        On submitting the form, it will query the databse with the parameters specified
+        The result will give /search of the restaurants nearby if on that date with that people a reservation is possible
+
+        */}
         <div
           className={`button ${sizeClass} ${styles["search-button"]}`}
           onClick={formSubmit}

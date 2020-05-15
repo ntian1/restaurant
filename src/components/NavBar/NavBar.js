@@ -17,8 +17,9 @@ const NavBar = (props) => {
         date={props.date}
         location={props.location}
       />
-      <button className={`button ${styles["nav-button"]}`}>Sign In</button>
-      <button className={`button ${styles["nav-button"]}`}>Register</button>
+      <Link to='/accountinfo'>
+      <button className={`button ${styles["nav-button"]}`}><i className="fas fa-user-circle"></i></button>
+      </Link>
     </div>
   );
 };

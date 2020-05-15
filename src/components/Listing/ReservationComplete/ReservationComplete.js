@@ -1,3 +1,13 @@
+// Reservation Complete /reservecomplete
+// get object of Reservation complete and display
+//   {
+//   Name of user:String
+//   Date: Date
+//   Time: String
+//   People : integer
+//    }
+
+
 import React from "react";
 import NavBar from "../../NavBar/NavBar";
 import styles from "./ReservationComplete.module.css";
@@ -48,6 +58,12 @@ const ReservationComplete = () => {
             </div>
           </div>
           <div className="content">
+
+            {/* 
+            
+            email : string 
+            replaced by abc@abc.com
+            */}
             Confirmation Email has been sent to abc@abc.com
           </div>
         </div>

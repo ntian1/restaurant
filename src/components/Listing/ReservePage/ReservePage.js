@@ -23,31 +23,58 @@ const ReservePage = () => {
                 </figure>
               </div>
               <div className="media-content">
+               {/* 
+            resturant owner posts this as string when giving restaurant info on /restaurant
+            gets string from db for 'Restaurant_Name'.
+            
+            */}
                 <p className="title is-3">Pizza Palace</p>
-
+                {/* 
+                
+                Get values from previous page and display
+                */}
                 <p>
                   <span className="icon">
                     <i className="fas fa-calendar-check"></i>
                   </span>
-                  Tues,May 19
+                  {/* 
+                
+                Get values from previous page and display
+                */}
+                  Tues,May 19 
                 </p>
                 <p>
                   <span className="icon">
                     <i className="fas fa-clock"></i>
                   </span>
+                   {/* 
+                
+                Get values from previous page and display
+                */}
                   7.30pm
                 </p>
                 <p>
                   <span className="icon">
                     <i className="fas fa-user-friends"></i>
                   </span>
+                 {/* 
+                
+                Get values from previous page and display
+                */}
                   2 people
                 </p>
               </div>
             </div>
             
           </div>
-
+            {/* 
+            
+            on submit form post details to db 
+            Name of user:String
+            Date: Date
+            Time: String
+            People : integer
+            */}
           <div className="control">
             <Link to="/reservecomplete">
               <button className="button is-link is-center">Submit</button>

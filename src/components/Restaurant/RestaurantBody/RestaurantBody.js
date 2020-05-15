@@ -1,6 +1,13 @@
+// Add cuisine type dropdown
+// Add timing hours in info 
+// add restaurant description input
+
 import React from "react";
 import styles from "./RestaurantBody.module.css";
 //import CarouselComp from "../../CarouselComp/CarouselComp";
+//import router from "../../../router/router";
+
+
 
 const RestaurantBody = () => {
   return (
