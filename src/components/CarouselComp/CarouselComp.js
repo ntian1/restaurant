@@ -1,6 +1,6 @@
-import React from "react";
+/*import React from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from 'react-image-gallery';
+//import ImageGallery from 'react-image-gallery';
 
 const CarouselComp = () => {
   // get url from db for image 
@@ -29,3 +29,4 @@ const CarouselComp = () => {
   );
 };
 export default CarouselComp;
+*/
